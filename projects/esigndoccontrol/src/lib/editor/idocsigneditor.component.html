@@ -1,0 +1,252 @@
+<div id="loader">
+    <span>Loading Document...</span>
+    <div id="progressbar"></div>
+</div>
+
+<div id="dialog" style="display: none" align="center">
+    {{dialogtext}}
+</div>
+<div class="content-tool" style="height: 41px;width:100%;"
+    [ngStyle]="{'backgroundColor': toolbarBg, 'color':toolbarColor}">
+    <div class="toolbar_left"></div>
+    <div class="toolbar_main">
+        <div *ngIf="offlineSaving" class="btn-group">
+
+            <button class="btn toolbar_button qtip tip-bottom" data-tip="Draft" (click)="offlineSave()">
+                <i *ngIf="!autosaving" class="fa fa-save"></i>
+                <i *ngIf="autosaving" class="fa fa-spinner fa-spin fa-fw"></i>
+
+                <span style="font-size: 8px;
+                    position: absolute;
+                    bottom: -9px;
+                    font-weight: 400;
+                    color: #607D8B;" *ngIf="autosaving">Saving...</span>
+            </button>
+        </div>
+        <div class="btn-group">
+            <button class="btn toolbar_button qtip tip-bottom" data-tip="Zoom Out" (click)="zoomOut()"><i
+                    class="fa fa-search-minus"></i></button>
+            <span>{{zoom * 100 | currency : '' : '' : '1.0-0'}}%</span>
+            <button class="btn toolbar_button qtip tip-bottom" data-tip="Zoom In" mat-fab (click)="zoomIn()"><i
+                    class="fa fa-search-plus"></i></button>
+        </div>
+        <div class="btn-group">
+            <select class="btn toolbar_button qtip tip-bottom" style="width: 34px;
+            font-size: 15px;
+            font-weight: normal;
+            padding: 0px;" [(ngModel)]="page" data-tip="Zoom Out">
+                <option *ngFor="let v of totalpagesarr" [value]="v">{{v}}</option>
+            </select> <span style="font-size: 15px;"> of {{totalpages}}</span>
+
+
+        </div>
+
+        <div class="btn-group">
+            <button class="btn toolbar_button qtip tip-bottom" data-tip="Delete" [disabled]="!selectedControl"
+                (click)="removeControl(false)"><i class="fa fa-trash-o"></i></button>
+            <button class="btn toolbar_button qtip tip-bottom" data-tip="Duplicate" [disabled]="!selectedControl"
+                mat-fab (click)="duplicate()"><i class="fa fa-clone"></i></button>
+            <button class="btn toolbar_button qtip tip-bottom" data-tip="Copy" [disabled]="!selectedControl" mat-fab
+                (click)="copyt()"><i class="fa fa-file-o"></i></button>
+            <button class="btn toolbar_button qtip tip-bottom" data-tip="Paste" [disabled]="!lastCopyElement " mat-fab
+                (click)="pastet()"><i class="fa fa-clipboard"></i></button>
+        </div>
+        <div class="btn-group">
+            <button class="btn toolbar_button qtip tip-bottom" data-tip="Remove All" (click)="clearAll()"
+                style="color: tomato;"><i class="fa fa-trash"></i></button>
+        </div>
+
+    </div>
+    <div class="toolbar_right"></div>
+</div>
+<div class="content-document">
+
+    <div class="leftbar" [style.height]="'calc(100vh - ' + reduceHeight +'px)'">
+        <h4 class="barTitle" [ngStyle]="{'backgroundColor': toolbarBg, 'color':toolbarColor}">Fields</h4>
+        <!-- <button (click)="export()">Export</button> -->
+        <ul class="toolsListGroup">
+            <li *ngFor="let obj of controlsfilter | groupBy:'group'">
+                <span class="grouptitle"
+                    [ngStyle]="{'backgroundColor': toolbarBg, 'color':toolbarColor}">{{obj.key}}</span>
+                <ul class="toolsList">
+                    <li *ngFor="let item of obj.value" title="{{item.text}}" style="z-index: 99999;"
+                        data-type="{{item.type}}" class="draggable newelement">
+                        <div class="icon" [ngStyle]="{'border-left': (item.isPro ? '2px dashed #E91E63' : '') }">
+                            <i class=" fa {{item.icon}}"></i></div>
+                        <span class="text">{{item.text}}</span>
+                    </li>
+                </ul>
+
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="maincontent" >
+
+        <div class="scrollable-content">
+            <div style="position: relative;">
+                <div id="pages" style="position: absolute;height: 100%;">
+                </div>
+                <pdf-viewer [src]="url" [show-all]="true" [original-size]="false" [render-text]="true"
+                    style="display: block;"  [style.height]="'calc(100vh - ' + reduceHeight +'px)'" [(page)]="page" [zoom]="zoom" (after-load-complete)="loadComplete($event)"
+                    (page-rendered)="pageRendered($event)"></pdf-viewer>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="rightbar" [style.height]="'calc(100vh - ' + reduceHeight +'px)'">
+        <div class="drawer__pages" style="overflow: auto;height: 100%;">
+
+            <div id="preview">
+                <h4 class="barTitle" [ngStyle]="{'backgroundColor': toolbarBg, 'color':toolbarColor}">Pages</h4>
+                <div class="thumbnailpage" style="margin: 13px;" *ngFor="let item of thumbnails" id="page{{item.page}}">
+                    <div class="thumbnailholder" [ngClass]="{'thumactive': page == item.page}"
+                        (click)="onPageClick(item.page)">
+                        <span class="countbadge" *ngIf="item.count > 0">{{item.count}}</span>
+                        <img src="data:image/jpeg;base64,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"
+                            style="width: 104px;">
+
+                        <span class="pagenumber">{{item.page}}</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <section class="drawer drawer--right" id="drawer-name" data-drawer-target>
+            <div class="drawer__wrapper">
+
+                <div class="drawer__content">
+                    <!-- <div>
+                        <button title="Remove" style="background-color: rgb(255, 108, 108);color: #ffffff;"
+                            (click)="removeControl()"><i class="fa fa-trash"></i></button>
+                        <button title="Copy" *ngIf="optionShowHide.copy"
+                            style="background-color: rgb(255, 108, 108);color: #ffffff;" (click)="copy($event)"><i
+                                class="fa fa-copy"></i></button>
+                    </div> -->
+                    <h4 class="barTitle" [ngStyle]="{'backgroundColor': toolbarBg, 'color':toolbarColor}">
+                        <i class="fa {{selectedField.icon}}"></i>&nbsp;&nbsp;{{selectedField.name}}</h4>
+
+                    <div style="padding: 0px;font-size: 12px; background-color: #f4f4f4;" class="listprop">
+                        <div *ngFor="let grp of selectedField.prop | groupBy:'group'" style="flex: 1;">
+                            <!-- {{item.display}} {{item.value}} -->
+
+                            <span (click)="openClosePropSection(grp)" *ngIf="grp.key" class="sectionHead">{{grp.key}} <i
+                                    *ngIf="grp.close ? false : true" class="fa fa-chevron-down"></i><i
+                                    *ngIf="grp.close ? true : false" class="fa fa-chevron-right"></i></span>
+                            <ul [style.display]="grp.close ? 'none': 'inherit'"
+                                style="padding: 0px 10px 0px 10px;font-size: 12px;list-style: none;background-color: #f4f4f4;"
+                                class="listprop">
+                                <li *ngFor="let item of grp.value" style="flex: 1;">
+                                    <div style="display: flex;flex-direction: column;">
+                                        <ng-container [ngTemplateOutlet]="this[item.type]"
+                                            [ngTemplateOutletContext]="{item:item}">
+                                        </ng-container>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+<ng-template #ddl let-item='item'>
+    <span class="label ">{{item.display}}</span>
+    <select class="control select" style="flex: 1;" (change)="updateProperties()" [(ngModel)]="item.value">
+
+        <option *ngFor="let it of propBehaviour[item.key]['values']" value="{{it}}">
+            {{it}}
+        </option>
+
+    </select>
+</ng-template>
+
+<ng-template #number let-item='item'>
+    <div style="display: flex; flex-direction: row;
+    justify-content: center;
+    align-items: center;">
+        <span class="label" style="margin-right: 4px;flex: 1;">{{item.display}}</span>
+        <input class="control number"  type="number" (change)="updateProperties()" style=""
+            [(ngModel)]="item.value">
+    </div>
+</ng-template>
+
+<ng-template #checkbox let-item='item'>
+    <div style="display: flex;align-items: center;">
+        <input class="checkbox" style="display: inline-block;" (change)="updateProperties()" type="checkbox"
+            [(ngModel)]="item.value">
+        <span class="label " style="display: inline;">{{item.display}}</span>
+    </div>
+</ng-template>
+
+<ng-template #text let-item='item'>
+    <span class="label ">{{item.display}}</span>
+    <input class="control" type="text" (change)="updateProperties()" style="flex: 1;" [(ngModel)]="item.value">
+</ng-template>
+
+
+<ng-template #ddlprop let-item='item'>
+    <span class="label ">{{item.display}}</span>
+    <small style="color: gray;">eg. val1;val2;val3</small>
+    <textarea [(ngModel)]="item.value" (change)="updateExternal($event, 'ddlprop', item)"></textarea>
+    <small class="label ">Default Selected</small>
+    <select class="control select" style="flex: 1;" (change)="updateExternal($event, 'ddlprop', item)"
+        [(ngModel)]="item.defval">
+        <option *ngFor="let it of item.extras" value="{{it}}">
+            {{it}}
+        </option>
+    </select>
+
+
+</ng-template>
+
+
+<ng-template #recipient let-item='item'>
+    <span class="label ">{{item.display}}</span>
+    <small style="color: gray;">eg. val1;val2;val3</small>
+    <textarea [(ngModel)]="item.value" (change)="updateExternal($event, 'recipient', item)"></textarea>
+</ng-template>
+
+
+
+
+
+<!-- 
+<button (click)="export()"></button>
+<div style="width: 150px;float: left; display: flex;justify-items:center;align-items: center;">
+
+
+    <div id="drag-me" draggable="true" (drag)="dragstart($event)" (dragend)="dradend($event)"
+        style="height: 60px;width: 60px; background-color: yellow;"
+        ondragstart="event.dataTransfer.setData('data', 'text')">
+        T
+    </div>
+    <div id="drag-me" draggable="true" (drag)="dragstart($event)" (drop)="drop($event)"
+        style="height: 60px;width: 60px; background-color: yellow;margin-left: 5px;"
+        ondragstart="event.dataTransfer.setData('data', 'sign')">
+        <img style="height: 60px;width: 60px;"
+            src="https://static.vecteezy.com/system/resources/previews/000/349/979/non_2x/vector-pen-icon.jpg">
+    </div>
+    <div id="drag-me" draggable="true" (drag)="dragstart($event)" (drop)="drop($event)"
+        style="height: 60px;width: 60px; background-color: yellow;margin-left: 5px;"
+        ondragstart="event.dataTransfer.setData('data', 'ddl')">
+        Slect
+    </div>
+
+
+</div>
+
+<div style="width: 500px;height: calc(100vh - 100px);overflow: auto;margin-left: 30px;float: left;">
+    <div id="pages" style="position: absolute;height: 100%;"></div>
+    <pdf-viewer [src]="pdfSrc" [render-text]="true" style="display: block;" [zoom]="zoom"
+        (page-rendered)="pageRendered($event)"></pdf-viewer>
+
+
+</div> -->

@@ -1,0 +1,12 @@
+{
+  "name": "esigndoccontrol",
+  "version": "0.0.2",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14"
+  },
+  "dependencies": {
+    "ng2-pdf-viewer": "^6.3.2",
+    "signature_pad": "^3.0.0-beta.3"
+  }
+}

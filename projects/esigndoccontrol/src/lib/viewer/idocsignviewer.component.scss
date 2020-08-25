@@ -1,0 +1,252 @@
+.content-document{
+    display: flex;
+   
+
+     
+}
+
+.leftbar{
+    background-color: #f4f4f4;
+    width: 240px;
+    border-right: 1px solid #ccc;
+    position: relative;
+    height: calc(100vh - 141px);
+    overflow: auto;
+
+    
+}
+
+.scroll-content{
+    display: block;
+    overflow: auto;
+}
+pdf-viewer {
+    display: block;
+    height: calc(100vh - 141px);
+  }
+.btnoptionnext{
+    position: absolute;
+    right: 0;
+    height: 36px;
+    width: 69px;
+    z-index: 1111;
+    top:109px;
+    background-color: #ffc820;
+}
+.btnoptionnext button{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background-color: transparent;
+    color: #fff;
+    cursor: pointer!important;
+}
+.btnoptionnext button:active, .btnoptionnext button:focus{
+    outline: none;
+    border: none;
+}
+
+.btnoptionnext::after {
+    
+    content: "";
+    position: absolute;
+    top: 50%;
+    margin-top: -18px;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-left: 1em solid;
+    right: -1em;
+    border-left-color: #ffc820 !important;
+}
+
+
+
+.maincontent{
+    flex: 1;
+    overflow: auto;
+    
+    z-index: 1;
+    position: relative;
+    background-color: #c0c0c0;
+}
+
+
+.rightbar{
+    position: relative;
+    background-color: #f4f4f4;
+    width: 220px;
+    
+}
+
+.defcontrol{
+    position: absolute;
+}
+
+.tools{
+    display: block;
+    padding: 10px;
+    text-align: right;
+}
+.tools .btn{
+    background-color: #ccc;
+    color: #333;
+    padding: 5px;
+    border: 1px solid rgb(153, 153, 153);
+    margin-right: 3px;
+}
+
+
+.content-tool{
+    border-bottom: 1px solid #ccc;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    min-height: 41px;
+    width: 100%;
+  }
+
+  .toolbar_left{
+    max-width: 375px;
+    min-width: 160px;
+    padding-left: 0px;
+    width: 241px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: inherit;
+
+    justify-content: center;
+    padding: 0 0px;
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    min-height: inherit;
+  }
+  .toolbar_main{
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 0%;
+    flex: 1 1 0%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 0 0px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: inherit;
+  }
+
+  .toolbar_right{
+    max-width: 375px;
+    min-width: 160px;
+    padding-left: 0px;
+    width: 220px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-item-align: stretch;
+    align-self: stretch;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: inherit;
+    justify-content: center;
+  }
+ 
+  .toolbar_button:disabled {
+    color: #bcbcbc;
+}
+  .btn-group+.btn-group{
+    border-left: 1px solid #ccc;
+    margin-left: 12px;
+    padding-left: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+  }
+
+  .btn{
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    color: #1e1e1e;
+    cursor: pointer;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    font-family: Maven Pro,Helvetica Neue,HelveticaNeue,Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    letter-spacing: .66px;
+    min-height: 28px;
+    padding: 4px 14px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    -webkit-transition: background-color .2s ease,border .2s ease,color .2s ease,-webkit-box-shadow .2s ease;
+    transition: background-color .2s ease,border .2s ease,color .2s ease,-webkit-box-shadow .2s ease;
+    transition: background-color .2s ease,border .2s ease,box-shadow .2s ease,color .2s ease;
+    transition: background-color .2s ease,border .2s ease,box-shadow .2s ease,color .2s ease,-webkit-box-shadow .2s ease;
+  
+  }
+
+  .toolbar_button{
+    
+    border-radius: 2px 0 0 2px; 
+    margin-left: -1px;
+    margin-right: 0;
+    background-color: transparent;
+    border-color: transparent; 
+    -webkit-transition: none;
+    transition: none;
+    font-size: 16px;
+    fill: #868686;
+    height: 16px;
+    line-height: 16px;
+    width: 16px;
+    color: #333333;
+  }
+  span.countbadge {
+    position: absolute;
+    left: -7px;
+    top: -7px;
+    width: 20px;
+    border: 1px solid #c19942;
+    background-color: #ffdd79;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+    color: #221d10;
+    align-items: center;
+    font-weight: bold;
+}
+
+span.countbadge.done{
+  background-color: #389662;
+  color: #ffffff;
+  border: 1px solid #025f3b;
+}
+ 

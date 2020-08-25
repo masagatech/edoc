@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/esigndoccontrol",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "ng2-pdf-viewer": "PdfViewer",
+      "signature_pad": "signature_pad"
+    }
+  },
+  "whitelistedNonPeerDependencies": [
+    "ng2-pdf-viewer",
+    "signature_pad"
+  ]
+}

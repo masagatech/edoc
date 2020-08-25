@@ -1,0 +1,421 @@
+
+/* You can add global styles to this file, and also import other style files */
+$pink: #3d3d3d;
+
+:root {  
+
+    --GG800-rgb: 60, 64, 67;
+}
+i-docsigneditor, i-docsignviewer {
+
+      .pdfcontrols{
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          overflow: hidden;
+        }
+      
+
+        .defaultcomp{
+          background-color: #ffd65bd4;
+          padding: 0px 5px 0px 5px;
+          
+          text-align: left;
+          cursor: pointer;
+          position: absolute;
+          border: 1px solid #b8860b;
+          -webkit-touch-callout: none;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          min-height: 14px;
+        }
+
+
+        .viewercomp{
+            background-color: #ffffff;
+            border: 1px solid #999999;
+        }
+
+
+      .arrow {
+          border: solid black;
+          border-width: 0 3px 3px 0;
+          display: inline-block;
+          padding: 3px;
+          position: absolute;
+          right: 14px;
+          top: 2px;
+        }
+        .down {
+          transform: rotate(45deg);
+          -webkit-transform: rotate(45deg);
+        }
+
+        .defaultcomp[data-type=sign]
+        { 
+          text-align: center;
+          font-size: 40px;
+
+        }
+
+
+        .defaultcomp[data-type=attach]
+        { 
+          text-align: center;
+          font-size: 40px;
+
+        }
+
+        .checkbox{
+            height: 15px;
+            width: 15px;
+            padding: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .radio{
+          height: 15px;
+          width: 15px;
+          padding: 0px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+      }
+
+
+        
+        .checkbox input[checkbox]{
+          margin: 0;
+          height: 15px;
+          width: 15px;
+          cursor: pointer;
+        }
+        
+        .radio input{
+
+          cursor: pointer;
+        }
+        
+
+        .require {
+          border: 1px solid #c30000;
+      }
+
+
+
+      .borderActive, .borderActive img {
+        border: 1px dashed #c30000;
+        
+      }
+
+
+      .active{
+          border: 1px dashed #2563d1!important;
+        }
+
+        .s-noselect{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}#s-rectBox{position:absolute;z-index:1090;border:2px dashed #cbd3e3}
+
+        .act {
+          background: #d9f8ff;
+          border: 1px solid #0094b5;
+      }
+
+      .defaultcomp[data-require="true"]
+        { 
+          
+      background-color: #ff98009c;
+        }
+
+        .defaultcomp[data-readonly="true"] {
+          background-color: #ddddddf2!important;
+          color: #000;
+      }
+
+      .helper{
+        display: flex;
+        background-color: #dfdfdf;
+        justify-content: center;
+        align-items: center;
+        z-index: 1111111;
+        font-size: 13px;
+        padding-right: 13px;
+
+      }
+      .helper .icon{
+        display: flex;
+          width: 25px;
+          height: 25px;
+          justify-content: center;
+          background-color: #ffd65b;
+          align-items: center;
+          margin-right: 5px;
+      }
+
+      .defaultcomp[data-checked="true"]{
+        
+      }
+      .site-cm-box ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .site-cm-box{z-index: 999999; width:185px;border:1px solid #d2d2d2;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;background-color:#fff}.site-cm-box ul.site-cm-group li{height:36px;padding-left:20px;padding-right:20px;line-height:36px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;cursor:default}.site-cm-box .site-cm-separ{height:0;border-top:1px solid #d2d2d2}.site-cm-box ul.site-cm-group li:hover,.site-cm-box ul.site-cm-group li.hover{color:#fff;background-color:#33ce61}.site-cm-box ul.site-cm-group li>.site-cm-box{left:185px;margin-top:-36px}.site-cm-box ul.site-cm-group li:hover>.site-cm-box,.site-cm-box ul.site-cm-group li.hover>.site-cm-box{color:#000}.site-cm-icon{color:#666;width:20px}
+
+      #preview{
+        text-align: center;
+      }
+
+      .thumbnailpage {
+        display: flex;
+        margin-bottom: 15px;
+        justify-content: center;
+        margin-top: 15px;
+
+      }
+      span.countbadge {
+        position: absolute;
+        left: -7px;
+        top: -7px;
+        width: 20px;
+        border: 1px solid #c40201;
+        background-color: #ff2725;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        font-size: 14px;
+        color: #fff;
+        align-items: center;
+        font-weight: bold;
+      }
+
+      .thumbnailholder{
+        display: flex;
+
+        position: relative;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+        
+      }
+
+      .thumbnailholder:hover{
+        background-color: #e0e0e0;
+      }
+
+
+      .thumbnailholder.thumactive{
+        background-color: #e0e0e0;
+      }
+
+      .thumbnailpage img {
+        border: 2px solid #fbde00;
+        width: 75px;
+      }
+
+
+      div[data-val] {
+        background: transparent;
+        border: 0;
+      }
+      .modal{
+        top : 45px !important
+      }
+      .modal.modal-close{
+        -webkit-animation: none!important;
+        animation: none!important;
+      }
+
+      .modal.modal-open{
+        -webkit-animation: none!important;
+        animation: none!important;
+      
+      }
+
+
+      /*the tip*/
+
+      .qtip:before {
+        z-index: 1111111;
+        content: attr(data-tip);
+        font-size: 14px;
+        position: absolute;
+        background: rgba(10, 20, 30, 0.85);
+        color: #fff;
+        line-height: 1.2em;
+        padding: 0.5em;
+        font-style: normal;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        min-width: 120px;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all .3s ease-in-out;
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+        font-family: sans-serif;
+        letter-spacing: 0;
+        font-weight: 600
+        
+      }
+      .qtip:after {
+        z-index: 1111111;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        content: '';
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 111;
+        transition: all .3s ease-in-out
+      }
+      .qtip:hover:before,
+      .qtip:hover:after {
+        visibility: visible;
+        opacity: 1
+      }
+      /*top*/
+      .qtip.tip-top:before {
+        top: -6px;
+        left: 50%;
+        transform: translate(-50%, calc(-100% - 8px));
+        box-sizing: border-box;
+        border-radius: 3px;
+        z-index: 111;
+      }
+      .qtip.tip-top:after {
+        border-width: 8px 8px 0 8px;
+        border-color: rgba(10, 20, 30, 0.85) transparent transparent transparent;
+        top: -15px;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+      /*bottom*/
+      .qtip.tip-bottom:before {
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, calc(100% + 8px));
+        box-sizing: border-box;
+        border-radius: 3px;
+      }
+      .qtip.tip-bottom:after {
+        border-width: 0 8px 8px 8px;
+        border-color: transparent transparent rgba(10, 20, 30, 0.85) transparent;
+        bottom: -8px;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+      /*left*/
+      .qtip.tip-left:before {
+        left: 0;
+        top: 50%;
+        transform: translate(calc(-100% - 8px), -50%);
+        box-sizing: border-box;
+        border-radius: 3px;
+      }
+      .qtip.tip-left:after {
+        border-width: 8px 0 8px 8px;
+        border-color: transparent transparent transparent rgba(10, 20, 30, 0.85);
+        left: -8px;
+        top: 50%;
+        transform: translate(0, -50%);
+      }
+      /*right*/
+      .qtip.tip-right:before {
+        right: 0;
+        top: 50%;
+        transform: translate(calc(100% + 8px), -50%);
+        box-sizing: border-box;
+        border-radius: 3px;
+      }
+      .qtip.tip-right:after {
+        border-width: 8px 8px 8px 0;
+        border-color: transparent rgba(10, 20, 30, 0.85) transparent transparent;
+        right: -8px;
+        top: 50%;
+        transform: translate(0, -50%);
+      } 
+
+      .barTitle{
+        font-weight: 400;
+        position: sticky;
+        font-size: 14px;
+        top: 0px;padding: 10px;
+        background-color: #e9e9e9;
+        z-index: 1;
+        text-align: left;
+        margin: 0px 0px 0px 0px;
+        border-bottom: 1px solid #e2e1e1;
+
+      }
+
+
+      .ui-widget-header{
+        border: 0px solid #dddddd!important;
+        background: transparent!important; 
+      }
+
+      .ui-widget.ui-widget-content{
+        border: 0px solid #dddddd!important;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px 0 rgba(var(--GG800-rgb), .3), 0 4px 8px 3px rgba(var(--GG800-rgb), .15);
+      }
+
+      pr-docsignviewer *:focus{
+        outline: none;
+      }
+
+      pr-docsigneditor *:focus{
+        outline: none;
+      }
+
+      #loader{
+        position: absolute;
+      height: 100%;
+
+      width: 100%;
+      z-index: 111;
+      background: #fff;display: flex;align-items: center;justify-content: center;flex-direction: column;
+      }
+
+      #progressbar{
+        width: 240px;
+          background: #6ba76c;
+          height: 10px;
+      }
+
+
+      .justifycenter{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .arrowshown{
+        position: absolute;
+        left: 387px;
+        z-index: 11111;
+        top: 7242px; 
+        padding-left: 4px;
+        color: #ff5600;
+        padding-right: 4px; 
+        display: none;
+        
+      }
+
+      .ui-tooltip.ui-widget-content {
+        background: #000;
+        color: #fff;
+        border: 0 solid #0b0b0b !important;
+      }
+}
