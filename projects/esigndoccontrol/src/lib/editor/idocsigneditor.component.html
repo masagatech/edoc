@@ -82,15 +82,16 @@
 
     </div>
 
-    <div class="maincontent" >
+    <div class="maincontent">
 
         <div class="scrollable-content">
             <div style="position: relative;">
                 <div id="pages" style="position: absolute;height: 100%;">
                 </div>
                 <pdf-viewer [src]="url" [show-all]="true" [original-size]="false" [render-text]="true"
-                    style="display: block;"  [style.height]="'calc(100vh - ' + reduceHeight +'px)'" [(page)]="page" [zoom]="zoom" (after-load-complete)="loadComplete($event)"
-                    (page-rendered)="pageRendered($event)"></pdf-viewer>
+                    style="display: block;" [style.height]="'calc(100vh - ' + reduceHeight +'px)'" [(page)]="page"
+                    [zoom]="zoom" (after-load-complete)="loadComplete($event)" (page-rendered)="pageRendered($event)">
+                </pdf-viewer>
             </div>
         </div>
 
@@ -173,8 +174,7 @@
     justify-content: center;
     align-items: center;">
         <span class="label" style="margin-right: 4px;flex: 1;">{{item.display}}</span>
-        <input class="control number"  type="number" (change)="updateProperties()" style=""
-            [(ngModel)]="item.value">
+        <input class="control number" type="number" (change)="updateProperties()" style="" [(ngModel)]="item.value">
     </div>
 </ng-template>
 
@@ -210,8 +210,14 @@
 
 <ng-template #recipient let-item='item'>
     <span class="label ">{{item.display}}</span>
-    <small style="color: gray;">eg. val1;val2;val3</small>
-    <textarea [(ngModel)]="item.value" (change)="updateExternal($event, 'recipient', item)"></textarea>
+    <!-- <small style="color: gray;">eg. val1;val2;val3</small> -->
+    <select class="control select" style="flex: 1;" (change)="updateExternal($event, 'recipient', item)"
+        [(ngModel)]="item.value">
+        <option *ngFor="let it of recipients" value="{{it}}">
+            {{it}}
+        </option>
+    </select>
+    <!-- <textarea [(ngModel)]="item.value" (change)="updateExternal($event, 'recipient', item)"></textarea> -->
 </ng-template>
 
 

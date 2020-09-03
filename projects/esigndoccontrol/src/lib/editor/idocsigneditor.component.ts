@@ -39,7 +39,7 @@ export class iDocsigneditorComponent implements OnInit {
   @ViewChild('ddlprop', { static: false }) ddlprop: TemplateRef<any>;
   @ViewChild('recipient', { static: false }) recipient: TemplateRef<any>;
 
-  @Input('url') url = '';
+  url = '';
 
   //toolbar and heading
   @Input() toolbarBg = '#e9e9e9';
@@ -58,7 +58,7 @@ export class iDocsigneditorComponent implements OnInit {
 
 
   }
-
+  @Input() recipients: any = ["Me"]
 
 
   // events 
@@ -131,7 +131,7 @@ export class iDocsigneditorComponent implements OnInit {
       const element = this.allowDomain[i];
 
       if (window.location.hostname.indexOf(window.atob(element)) > -1) {
-        
+
 
         break;
       }
@@ -172,7 +172,16 @@ export class iDocsigneditorComponent implements OnInit {
     this.onZoom.emit(false);
   }
 
+  getDate() {
+    return this.externalProp;
+  }
 
+  setData(pdfUrl, data) {
+    //this.removeAllControls();
+   
+    this.externalProp = data;
+    this.url = pdfUrl;
+  }
 
 
   ngAfterViewInit(): void {
@@ -193,39 +202,7 @@ export class iDocsigneditorComponent implements OnInit {
       value: false
     })
     let that = this;
-    // $(function () {
 
-    //     $(document).bind('keydown', function (e) {
-    //         if (that.selectedControl && $(that.selectedControl).is(":focus")) {
-    //             e.preventDefault();
-    //             if (e.keyCode == 37) // right -- 
-    //             {
-    //                 that.selectedField['postion']['left']['value'] -= 1;
-    //                 //that.selectedControl.style['left'] = (parseFloat(that.selectedControl.style['left']) + 1) + 'px'
-    //             } else if (e.keyCode == 39) //left
-    //             {
-    //                 that.selectedField['postion']['left']['value'] += 1;
-    //                 //that.selectedControl.style['left'] = (parseFloat(that.selectedControl.style['left']) - 1) + 'px'
-    //             }
-    //             else if (e.keyCode == 40) // key down
-    //             {
-    //                 that.selectedField['postion']['top']['value'] += 1;
-    //                 //that.selectedControl.style['top'] = (parseFloat(that.selectedControl.style['top']) - 1) + 'px'
-    //             } else if (e.keyCode == 38) //Key up
-    //             {
-    //                 that.selectedField['postion']['top']['value'] -= 1;
-    //                 //that.selectedControl.style['top'] = (parseFloat(that.selectedControl.style['top']) + 1) + 'px'
-    //             } else if (e.keyCode == 8 || e.keyCode == 46) //Key up
-    //             {
-    //                 that.removeControl();
-    //                 //that.selectedControl.style['top'] = (parseFloat(that.selectedControl.style['top']) + 1) + 'px'
-    //             }
-
-    //             that.updateProperties()
-    //             return false;
-    //         }
-    //     })
-    // });
 
 
   }
@@ -235,15 +212,7 @@ export class iDocsigneditorComponent implements OnInit {
 
 
     $('#cpage' + page).css({ 'transform-origin': '0% 0%', 'transform': 'scale(' + this.scale + ', ' + this.scale + ')' });
-    // let zoomfactor =  this.zoom;
-    // let controls = Object.keys(this.externalProp[page]);
-    // for (let j = 0; j < controls.length; j++) {
-    //     const control: any = this.externalProp[page][controls[j]];
-    //     if (control && typeof (control) == 'object') {
-    //         console.log($('#' + control.id));
-    //         $('#' + control.id).css({ 'left': (control.style.left * zoomfactor) + 'px', "top": (control.style.top * zoomfactor) + 'px', 'transform': 'scale(' + this.zoom + ')' });
-    //     }
-    // }
+
   }
 
   pageRendered(e) {
@@ -312,84 +281,6 @@ export class iDocsigneditorComponent implements OnInit {
     });
 
 
-    // new Selectables({
-    //     elements: '.defaultcomp',
-    //     selectedClass: 'active',
-    //     zone: '#cpage' + e.pageNumber,
-    //     start: function (e) {
-
-    //     }
-    // });
-
-    // let can = new fabric.Canvas('cpage' + e.pageNumber);
-    // if (this.pagesArray[e.pageNumber]) {
-    //     can.loadFromJSON(this.pagesArray[e.pageNumber], () => {
-    //         this.canvaspages[e.pageNumber] = can;
-    //     })
-    // }
-    // can.on('drop', (ee: fabric.IEvent) => {
-
-    //     this.addControls(ee.e, can)
-    //     this.canvaspages[e.pageNumber] = can;
-    // });
-
-    // can.on('selection:cleared', (ee: fabric.IEvent) => {
-    //     this.selectedObject = null;
-    //     this.hideProperties();
-    // });
-    // can.on('mouse:down', (evn: fabric.IEvent) => {
-
-
-    //     if (evn.target == null) return
-    //     // if(this.selectedObject){
-    //     //     this.selectedObject.canvas._discardActiveObject();
-
-    //     // }
-
-    //     this.selectedObject = evn.target;
-    //     this.showProperties(evn.target, evn.target['prop'].type)
-    // })
-
-
-
-    // can.on('object:modified', (evn: fabric.IEvent) => {
-
-
-    //     if (evn.target == null) return
-    //     // if(this.selectedObject){
-    //     //     this.selectedObject.canvas._discardActiveObject();
-
-    //     // }
-    //     if (evn.target['prop'].type == 'text') {
-
-
-
-    //     }
-
-
-    //     this.selectedObject = evn.target;
-    //     this.showProperties(evn.target, evn.target['prop'].type)
-    // })
-
-
-
-
-
-    // let ctrl = new fabric.Textbox('Hello World !', {
-    //     left: 50,
-    //     top: 50,
-    //     fontSize: 12,
-    //     width: 150,
-    //     centeredRotation: false,
-    //     centeredScaling: false,
-    //     fontFamily: 'Helvetica',
-    //     backgroundColor: 'yellow',
-    //     cornerSize: 10,
-    //     cornerStyle: 'circle',
-
-    // });
-
-
 
 
 
@@ -425,35 +316,6 @@ export class iDocsigneditorComponent implements OnInit {
       $('#loader').hide();
     }, 1000);
 
-
-
-    //     // track the current page
-    //     let currentPage = null;
-    //     pdf.getPage(i).then(p => {
-    //         currentPage = p;
-
-    //         // get the annotations of the current page
-    //         return p.getAnnotations();
-    //     }).then(ann => {
-
-    //         // ugly cast due to missing typescript definitions
-    //         // please contribute to complete @types/pdfjs-dist
-    //         const annotations = (<any>ann) as PDFAnnotationData[];
-
-    //         annotations
-    //             .filter(a => a.subtype === 'Widget') // get the form field annotation only
-    //             .forEach(a => {
-
-    //                 // get the rectangle that represent the single field
-    //                 // and resize it according to the current DPI
-    //                 const fieldRect = currentPage.getViewport(this.dpiRatio)
-    //                                              .convertToViewportRectangle(a.rect);
-
-    //                 // add the corresponding input
-    //                 this.addInput(a, fieldRect);
-    //             });
-    //     });
-    // }
   }
 
 
@@ -462,13 +324,18 @@ export class iDocsigneditorComponent implements OnInit {
   }
 
   showThumbnailCount(page) {
-    if (!this.externalProp[page]) return;
-    var controlsAdded = Object.keys(this.externalProp[page]).length;
-    let f = this.thumbnails.find(a => {
-      return a.page == page
-    })
-    f.count = controlsAdded;
+    try {
 
+      if (!this.externalProp[page]) return;
+      var controlsAdded = Object.keys(this.externalProp[page]).length;
+      let f = this.thumbnails.find(a => {
+        return a.page == page
+      })
+      f.count = controlsAdded;
+
+    } catch (error) {
+
+    }
   }
 
   xy = '';
@@ -488,12 +355,6 @@ export class iDocsigneditorComponent implements OnInit {
 
     console.log($(e.target).offset())
   }
-
-  // dragFix(event, ui, containmentArea, scale) {
-  //   var contWidth = containmentArea.width() - 12, contHeight = containmentArea.height() - 2;
-  //   ui.position.left = Math.max(0, Math.min(ui.position.left / scale, contWidth - ui.helper.width()));
-  //   ui.position.top = Math.max(0, Math.min(ui.position.top / scale, contHeight - ui.helper.height()));
-  // }
 
 
   lastCopyElement = undefined;
@@ -827,6 +688,7 @@ export class iDocsigneditorComponent implements OnInit {
   }
 
   removeAllControls() {
+    debugger
     let pages = Object.keys(this.externalProp);
     for (let p = 0; p < pages.length; p++) {
       const page = pages[p];
@@ -1033,41 +895,23 @@ export class iDocsigneditorComponent implements OnInit {
         val = extprop[element];
       } else if (['width', 'top', 'left', 'fontSize'].indexOf(element) > -1) {
         if (eltyp === 'style') {
-          // val = parseFloat(el.style[element])
-          // extprop.style[element] = val;
+
           val = extprop.style[element];
         }
       }
       else {
         if (eltyp === 'dataset') {
-          // if (assg.cast == 'number') {
-          //     val = parseFloat(el.dataset[element] || assg.default)
-          // } else if (assg.cast == 'string') {
-          //     val = (el.dataset[element] || assg.default)
-          // } else if (assg.cast == 'boolean') {
-          //     val = (el.dataset[element] || assg.default) == 'true' ? true : false
-          // }
-          //extprop.dataset[element] = va
+
           val = extprop.dataset[element];
         } else if (eltyp === 'style') {
-          // val = el.style[element]
-          // extprop.style[element] = val;
+
           val = extprop.style[element];
         } else if (eltyp === 'prop') {
-          // val = el[element]
-          // extprop[element] = val;
+
           val = extprop[element];
         }
       };
-      // if (type == 'ddl' || type == 'text' || type == 'note') {
-      //     let o = e.getObjects();
-      //     let text = o[0];
-      //     if (['text', 'fontFamily', 'fontSize', 'fontStyle', 'fontWeight'].indexOf(element) > -1) {
-      //         val = text[element];
-      //     }
 
-
-      // }
       let propsdata = {
         key: element,
         value: val,
@@ -1167,24 +1011,8 @@ export class iDocsigneditorComponent implements OnInit {
         extprop[element.key] = element.value;
       }
 
-      // if (this.selectedField['ctype'] == 'ddl' || this.selectedField['ctype'] == 'note' || this.selectedField['ctype'] == 'text') {
-      //     let text = this.selectedObject.item(0);
-
-      //     if (['text', 'fontFamily', 'fontSize', 'fontStyle', 'fontWeight'].indexOf(element.key) > -1) {
-      //         text.set(element.key, element.value)
-      //     } else {
-      //         this.selectedObject[element.key] = (element.type === 'number' ? parseInt(element.value) : element.value);
-
-      //     }
-
-
-      // } else {
-      //     this.selectedObject[element.key] = (element.type === 'number' ? parseInt(element.value) : element.value);
-      // }
     }
     this.setExternalProp(this.selectedProps.dataset.page, this.selectedProps.id, extprop);
-    //console.log(this.selectedObject);
-    // this.selectedObject.canvas.renderAll();
 
 
   }
